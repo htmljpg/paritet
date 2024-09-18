@@ -19,6 +19,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Nav = () => {
+  const toggle = new _plugins_Toggle__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    toggleButton: 'searchButton',
+    toggleContainer: 'searchForm',
+    outsideClose: true
+  });
   const navTabs = new _plugins_Tabs__WEBPACK_IMPORTED_MODULE_0__["default"]({
     tabSelectorById: '#navTabs',
     target: true,
@@ -32,7 +37,8 @@ const Nav = () => {
   const navHamburger = new _plugins_Toggle__WEBPACK_IMPORTED_MODULE_1__["default"]({
     toggleButton: 'navHamburgerButton',
     toggleContainer: 'navDropdown',
-    outsideClose: true
+    outsideClose: true,
+    bodyOverflowHidden: true
   });
   try {
     const navItemsDropdown = document.querySelectorAll('.nav__item--dropdown');
@@ -74,10 +80,10 @@ const Nav = () => {
   const navClose = () => {
     nav && (nav.classList.remove('open'), open.classList.remove('open'));
     setTimeout(() => {
-      overlay.classList.remove('d-block');
-      overlay.classList.add('d-none');
+      overlay && overlay.classList.remove('d-block');
+      overlay && overlay.classList.add('d-none');
     }, 600);
-    overlay && overlay.classList.remove('open');
+    overlay && overlay && overlay.classList.remove('open');
     setTimeout(() => {
       header && (header.style.marginRight = 0);
       (0,_utils_overflow__WEBPACK_IMPORTED_MODULE_2__.overflowVisible)();
@@ -85,9 +91,9 @@ const Nav = () => {
   };
   const navOpen = () => {
     nav && (nav.classList.remove('open'), nav.classList.add('open'), open.classList.add('open'));
-    overlay.classList.remove('d-none');
+    overlay && overlay.classList.remove('d-none');
     setTimeout(() => {
-      overlay && overlay.classList.add('open');
+      overlay && overlay && overlay.classList.add('open');
     }, 100);
     header && (header.style.marginRight = `${scrollWidth}px`);
     (0,_utils_overflow__WEBPACK_IMPORTED_MODULE_2__.overflowHidden)();
@@ -309,30 +315,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const HomePage = () => {
-  const toggle = new _plugins_Toggle__WEBPACK_IMPORTED_MODULE_5__["default"]({
-    toggleButton: 'searchButton',
-    toggleContainer: 'searchForm',
-    outsideClose: true
-  });
   (0,_plugins_range_slider__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  let wow = new wowjs__WEBPACK_IMPORTED_MODULE_3__.WOW({
-    boxClass: 'wow',
-    // animated element css class (default is wow)
-    animateClass: 'animated',
-    // animation css class (default is animated)
-    offset: 100,
-    // distance to the element when triggering the animation (default is 0)
-    mobile: true,
-    // trigger animations on mobile devices (default is true)
-    live: true,
-    // act on asynchronously loaded content (default is true)
-    callback: function (box) {
-      // the callback is fired every time an animation is started
-      // the argument that is passed in is the DOM node being animated
-    },
-    scrollContainer: null // optional scroll container selector, otherwise use window
-  });
-  wow.init();
+
+  // let wow = new WOW(
+  //   {
+  //     boxClass:     'wow',      // animated element css class (default is wow)
+  //     animateClass: 'animated', // animation css class (default is animated)
+  //     offset:       100,          // distance to the element when triggering the animation (default is 0)
+  //     mobile:       true,       // trigger animations on mobile devices (default is true)
+  //     live:         true,       // act on asynchronously loaded content (default is true)
+  //     callback:     function(box) {
+  //       // the callback is fired every time an animation is started
+  //       // the argument that is passed in is the DOM node being animated
+  //     },
+  //     scrollContainer: null // optional scroll container selector, otherwise use window
+  //   }
+  // );
+  // wow.init();
+
   function throttle(callee, timeout) {
     let timer = null;
     return function perform() {
@@ -348,8 +348,6 @@ const HomePage = () => {
     };
   }
   var windowWidth = jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).width();
-  var width = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.customers__items').width();
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.customers__items').css('min-width', width);
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.customers').mousemove(function (event) {
     var moveX = (jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).width() / 2 - event.pageX) * 1.4;
     jquery__WEBPACK_IMPORTED_MODULE_1___default()('.customers__row--primary').css('margin-left', moveX + 'px');
@@ -442,6 +440,12 @@ const HomePage = () => {
     freeMode: true,
     watchSlidesProgress: true,
     allowTouchMove: false,
+    touchReleaseOnEdges: true,
+    mousewheel: false,
+    simulateTouch: false,
+    observer: true,
+    observeParents: true,
+    slideToClickedSlide: false,
     pagination: {
       el: '.dots',
       clickable: true,
@@ -4609,14 +4613,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _utils_toggleHTMLClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/toggleHTMLClass */ "./src/js/utils/toggleHTMLClass.js");
+/* harmony import */ var _utils_overflow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/overflow */ "./src/js/utils/overflow.js");
+/* harmony import */ var _utils_toggleHTMLClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/toggleHTMLClass */ "./src/js/utils/toggleHTMLClass.js");
+
 
 function Toggle(options) {
   console.log(options);
   const {
     toggleButton,
     toggleContainer,
-    outsideClose
+    outsideClose,
+    bodyOverflowHidden
   } = options || {};
   this.toggleButton = options.toggleButton;
   this.toggleButtonElement = document.getElementById(this.toggleButton);
@@ -4624,15 +4631,19 @@ function Toggle(options) {
   this.toggleContainerElement = document.getElementById(this.toggleContainer);
   this.isShow = false;
   this.outsideClose = outsideClose || false;
+  this.bodyOverflowHidden = bodyOverflowHidden || false;
+  console.log('this.bodyOverflowHidden', this.bodyOverflowHidden);
   this.show = () => {
     this.isShow = true;
     this.toggleButtonElement && this.toggleButtonElement.classList.add('active');
     this.toggleContainerElement && this.toggleContainerElement.classList.add('show');
+    this.bodyOverflowHidden && (0,_utils_overflow__WEBPACK_IMPORTED_MODULE_0__.overflowHidden)();
   };
   this.hidden = () => {
     this.isShow = false;
     this.toggleButtonElement && this.toggleButtonElement.classList.remove('active');
     this.toggleContainerElement && this.toggleContainerElement.classList.remove('show');
+    this.bodyOverflowHidden && (0,_utils_overflow__WEBPACK_IMPORTED_MODULE_0__.overflowVisible)();
   };
   this.outsideCloseHandler = event => {
     let isClickInside = this.toggleContainerElement && this.toggleContainerElement.contains(event.target) || this.toggleButtonElement.contains(event.target);
