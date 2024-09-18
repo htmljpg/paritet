@@ -9247,16 +9247,16 @@ h1, h2, h3, h4, h5, h6, p, ul {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 5000;
-  display: none;
+  font-size: 12px;
 }
 
 .fix-social__items {
-  gap: 20px;
+  gap: 1.25em;
 }
 
 .fix-social__link {
-  height: 76px;
-  width: 76px;
+  height: 4.75em;
+  width: 4.75em;
   border-radius: 50%;
   color: var(--color-white);
   border: 2px solid transparent;
@@ -9282,31 +9282,23 @@ h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 .fix-social__link .icon-whatsapp {
-  font-size: 33px;
+  font-size: 2.0625em;
 }
 
 .fix-social__link .icon-telegram {
-  font-size: 30px;
+  font-size: 1.875em;
   position: relative;
-  left: -2px;
+  left: -0.125em;
 }
 
-@media (min-width: 576px) {
-  .fix-social,
-  .scrollToTop {
-    right: calc((100vw - 540px) / 2);
-  }
-}
-@media (min-width: 768px) {
-  .fix-social,
-  .scrollToTop {
-    right: calc((100vw - 720px) / 2);
-  }
-}
 @media (min-width: 992px) {
   .fix-social,
   .scrollToTop {
     right: calc((100vw - 960px) / 2);
+  }
+  .fix-social,
+  .scrollToTop {
+    font-size: 16px;
   }
 }
 @media (min-width: 1200px) {
@@ -10834,8 +10826,8 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   padding: 0;
   border-radius: 50%;
   cursor: pointer;
-  width: 76px;
-  height: 76px;
+  width: 4.75em;
+  height: 4.75em;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
@@ -10853,11 +10845,11 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 17px;
   position: fixed;
   bottom: 93px;
   z-index: 5001;
   background-color: var(--color-gray);
+  font-size: 12px;
 }
 .scrollToTop.showBtn {
   opacity: 1;
@@ -10865,6 +10857,9 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   -webkit-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);
+}
+.scrollToTop i {
+  font-size: 1.0625em;
 }
 .scrollToTop #progress-bar {
   --scrollAmount: 0px;
@@ -12456,6 +12451,9 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
     font-size: 16px;
     font-weight: 600;
   }
+  .dropdown__item > div {
+    gap: 26px;
+  }
   .dropdown__item > .dropdown__link {
     font-size: 14px;
     color: #DCC2C2;
@@ -12751,23 +12749,23 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   .arrow-title__icon--6 i {
     font-size: 4.5625em;
   }
-  .play {
+  .choouse-us .play {
     height: 3.4375em;
     width: 3.4375em;
   }
-  .icon-play {
+  .choouse-us .icon-play {
     font-size: 1.125em;
   }
-  .pulse > span {
+  .choouse-us .pulse > span {
     border-width: 1.37px;
   }
-  .play .pulse span:nth-of-type(1) {
+  .choouse-us .play .pulse span:nth-of-type(1) {
     margin: -2.5625em;
   }
-  .play .pulse span:nth-of-type(2) {
+  .choouse-us .play .pulse span:nth-of-type(2) {
     margin: -3.5625em;
   }
-  .play .pulse span:nth-of-type(3) {
+  .choouse-us .play .pulse span:nth-of-type(3) {
     margin: -4.5em;
   }
   .form__block-cell {
@@ -12992,7 +12990,7 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   }
 }
 @media (max-width: 767px) {
-  .scrollToTop {
+  .fix-social, .scrollToTop {
     right: 20px;
   }
 }
@@ -13057,10 +13055,13 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
     flex-direction: column;
     gap: 10px 0;
   }
+  .pagination__items {
+    gap: 7px;
+  }
   .pagination__link {
-    height: 38px;
-    width: 38px;
-    line-height: 38px;
+    height: 36px;
+    width: 36px;
+    line-height: 36px;
   }
   .pagination__link--prev,
   .pagination__link--next {

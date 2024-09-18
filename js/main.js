@@ -207,10 +207,10 @@ const CatalogPage = () => {
       if (containers[i]) {
         if (containers[i].classList.contains('active')) {
           containers[i].classList.remove('active');
-          containers[i].slideDown();
+          containers[i].slideUp();
         } else {
           containers[i].classList.add('active');
-          containers[i].slideUp();
+          containers[i].slideDown();
         }
       }
     });
