@@ -12660,9 +12660,6 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
   .section__header--choouse-us {
     margin-bottom: 41px;
   }
-  body {
-    max-width: 430px;
-  }
   .choouse-us {
     font-size: 16px;
     width: auto;
@@ -13070,6 +13067,11 @@ input[type=checkbox]:checked ~ .switchbox__row .icon-checked--form {
     font-size: 18px;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+@media (min-width: 400px) and (max-width: 991px) {
+  .product__btn-text {
+    display: block !important;
   }
 }
 [class^=icon-], [class*=" icon-"] {
