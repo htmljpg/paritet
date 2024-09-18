@@ -10121,6 +10121,10 @@ h1, h2, h3, h4, h5, h6, p, ul {
   gap: 20px;
 }
 
+.product__bottom-row > div:first-child {
+  max-width: 98px;
+}
+
 .quantity {
   background-color: var(--white-color);
   border-radius: 25px;
